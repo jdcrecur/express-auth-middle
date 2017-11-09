@@ -1,17 +1,27 @@
 {
   "name": "express-auth-middle",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "express-auth-middle",
-  "main": "index.js",
+  "main": "dist/group-array-then-sort.js",
+  "module": "dist/group-array-then-sort.mjs",
+  "jsnext:main": "dist/group-array-then-sort.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "eslint lib test",
+    "build": "rollup -c --environment BUILD:production",
+    "watch": "rollup -c -w",
+    "pretest": "rollup -c",
+    "test": "mocha",
+    "prepublish": "npm test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdcrecur/express-auth-middle.git"
   },
   "keywords": [
-    "express"
+    "express",
+    "authentication middleware",
+    "basic auth",
+    "x-auth"
   ],
   "author": "John Carmichael",
   "license": "ISC",
@@ -21,5 +31,19 @@
   "homepage": "https://github.com/jdcrecur/express-auth-middle#readme",
   "dependencies": {
     "basic-auth": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.18.0",
+    "babelrc-rollup": "^3.0.0",
+    "eslint": "^4.10.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-istanbul": "^1.1.0",
+    "rollup-watch": "^4.0.0"
   }
 }

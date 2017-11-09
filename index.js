@@ -1,77 +1,20 @@
-import basicAuth from 'basic-auth'
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('basic-auth')) :
+	typeof define === 'function' && define.amd ? define(['basic-auth'], factory) :
+	(global['express-auth-middle'] = factory(global.basicAuth));
+}(this, (function (basicAuth) { 'use strict';
 
-const return401 = (res, options) => {
-  console.error('authorisationMiddleware 401')
-  if (options.challenge) {
-    res.set('WWW-Authenticate', 'Basic realm="' + options.challenge + '"')
-  }
-  return res.status(401).send()
-}
-const xAuthCheck = (req, xAuthorisationKey) => {
-  if (req.headers['x-authorization']) {
-    if (req.headers['x-authorization'] === 'TOKEN ' + xAuthorisationKey) {
-      return true
-    }
-  }
-  return false
-}
-const basicAuthCheck = (req, basicAuthUname, basicAuthPword) => {
-  const user = basicAuth(req)
-  if (!user) {
-    console.error('Basic authentication failed')
-    return false
-  } else {
-    return (basicAuthUname === user.name && basicAuthPword === user.pass)
-  }
-}
+basicAuth = basicAuth && basicAuth.hasOwnProperty('default') ? basicAuth['default'] : basicAuth;
 
-const validateSwitch = (type, req, credentials) => {
-  switch (type) {
-    case 'x-auth':
-      if (credentials.xAuthorisationKey) {
-        return xAuthCheck(req, credentials.xAuthorisationKey)
-      } else {
-        console.error('auth middleware use attempt with no xAuthorisationKey passed in the options! Returning false but this does not mean the auth check failed')
-        return false
-      }
-    case 'basic-auth':
-      if (credentials.basicAuthUname && credentials.basicAuthPword) {
-        return basicAuthCheck(req, credentials.basicAuthUname, credentials.basicAuthPword)
-      } else {
-        console.error('auth middleware use attempt with no basicAuthUname OR basicAuthPword passed in the options! Returning false but this does not mean the auth check failed')
-        return false
-      }
-    default:
-      console.error('Invalid auth type passed, return false')
-      return false
-  }
+var __cov_ywtvwR4khfKLIHaTt1f6Ew = (Function('return this'))();
+if (!__cov_ywtvwR4khfKLIHaTt1f6Ew.__coverage__) { __cov_ywtvwR4khfKLIHaTt1f6Ew.__coverage__ = {}; }
+__cov_ywtvwR4khfKLIHaTt1f6Ew = __cov_ywtvwR4khfKLIHaTt1f6Ew.__coverage__;
+if (!(__cov_ywtvwR4khfKLIHaTt1f6Ew['/Users/ZPU/code/express-auth-middle/lib/index.js'])) {
+   __cov_ywtvwR4khfKLIHaTt1f6Ew['/Users/ZPU/code/express-auth-middle/lib/index.js'] = {"path":"/Users/ZPU/code/express-auth-middle/lib/index.js","s":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":0,"17":0,"18":0,"19":0,"20":0,"21":0,"22":0,"23":0,"24":0,"25":0,"26":0,"27":0,"28":0,"29":0,"30":0,"31":0,"32":0,"33":0,"34":0,"35":0,"36":0,"37":0,"38":0,"39":0,"40":0,"41":0,"42":0},"b":{"1":[0,0],"2":[0,0],"3":[0,0],"4":[0,0],"5":[0,0],"6":[0,0,0],"7":[0,0],"8":[0,0],"9":[0,0],"10":[0,0],"11":[0,0],"12":[0,0],"13":[0,0],"14":[0,0],"15":[0,0],"16":[0,0],"17":[0,0]},"f":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0},"fnMap":{"1":{"name":"return401","line":3,"loc":{"start":{"line":3,"column":16},"end":{"line":3,"column":49}}},"2":{"name":"xAuthCheck","line":10,"loc":{"start":{"line":10,"column":17},"end":{"line":10,"column":61}}},"3":{"name":"basicAuthCheck","line":18,"loc":{"start":{"line":18,"column":21},"end":{"line":18,"column":82}}},"4":{"name":"validateSwitch","line":28,"loc":{"start":{"line":28,"column":21},"end":{"line":28,"column":69}}},"5":{"name":"(anonymous_5)","line":54,"loc":{"start":{"line":54,"column":16},"end":{"line":54,"column":28}}},"6":{"name":"(anonymous_6)","line":57,"loc":{"start":{"line":57,"column":9},"end":{"line":57,"column":35}}}},"statementMap":{"1":{"start":{"line":3,"column":0},"end":{"line":9,"column":2}},"2":{"start":{"line":4,"column":2},"end":{"line":4,"column":47}},"3":{"start":{"line":5,"column":2},"end":{"line":7,"column":3}},"4":{"start":{"line":6,"column":4},"end":{"line":6,"column":75}},"5":{"start":{"line":8,"column":2},"end":{"line":8,"column":32}},"6":{"start":{"line":10,"column":0},"end":{"line":17,"column":2}},"7":{"start":{"line":11,"column":2},"end":{"line":15,"column":3}},"8":{"start":{"line":12,"column":4},"end":{"line":14,"column":5}},"9":{"start":{"line":13,"column":6},"end":{"line":13,"column":18}},"10":{"start":{"line":16,"column":2},"end":{"line":16,"column":15}},"11":{"start":{"line":18,"column":0},"end":{"line":26,"column":2}},"12":{"start":{"line":19,"column":2},"end":{"line":19,"column":28}},"13":{"start":{"line":20,"column":2},"end":{"line":25,"column":3}},"14":{"start":{"line":21,"column":4},"end":{"line":21,"column":49}},"15":{"start":{"line":22,"column":4},"end":{"line":22,"column":17}},"16":{"start":{"line":24,"column":4},"end":{"line":24,"column":72}},"17":{"start":{"line":28,"column":0},"end":{"line":48,"column":2}},"18":{"start":{"line":29,"column":2},"end":{"line":47,"column":3}},"19":{"start":{"line":31,"column":6},"end":{"line":36,"column":7}},"20":{"start":{"line":32,"column":8},"end":{"line":32,"column":62}},"21":{"start":{"line":34,"column":8},"end":{"line":34,"column":163}},"22":{"start":{"line":35,"column":8},"end":{"line":35,"column":21}},"23":{"start":{"line":38,"column":6},"end":{"line":43,"column":7}},"24":{"start":{"line":39,"column":8},"end":{"line":39,"column":91}},"25":{"start":{"line":41,"column":8},"end":{"line":41,"column":178}},"26":{"start":{"line":42,"column":8},"end":{"line":42,"column":21}},"27":{"start":{"line":45,"column":6},"end":{"line":45,"column":62}},"28":{"start":{"line":46,"column":6},"end":{"line":46,"column":19}},"29":{"start":{"line":55,"column":2},"end":{"line":55,"column":87}},"30":{"start":{"line":57,"column":2},"end":{"line":78,"column":4}},"31":{"start":{"line":58,"column":4},"end":{"line":61,"column":5}},"32":{"start":{"line":59,"column":6},"end":{"line":59,"column":109}},"33":{"start":{"line":60,"column":6},"end":{"line":60,"column":37}},"34":{"start":{"line":62,"column":4},"end":{"line":67,"column":5}},"35":{"start":{"line":63,"column":6},"end":{"line":65,"column":7}},"36":{"start":{"line":64,"column":8},"end":{"line":64,"column":22}},"37":{"start":{"line":66,"column":6},"end":{"line":66,"column":37}},"38":{"start":{"line":69,"column":4},"end":{"line":75,"column":5}},"39":{"start":{"line":70,"column":6},"end":{"line":74,"column":7}},"40":{"start":{"line":71,"column":8},"end":{"line":73,"column":9}},"41":{"start":{"line":72,"column":10},"end":{"line":72,"column":24}},"42":{"start":{"line":77,"column":4},"end":{"line":77,"column":35}}},"branchMap":{"1":{"line":5,"type":"if","locations":[{"start":{"line":5,"column":2},"end":{"line":5,"column":2}},{"start":{"line":5,"column":2},"end":{"line":5,"column":2}}]},"2":{"line":11,"type":"if","locations":[{"start":{"line":11,"column":2},"end":{"line":11,"column":2}},{"start":{"line":11,"column":2},"end":{"line":11,"column":2}}]},"3":{"line":12,"type":"if","locations":[{"start":{"line":12,"column":4},"end":{"line":12,"column":4}},{"start":{"line":12,"column":4},"end":{"line":12,"column":4}}]},"4":{"line":20,"type":"if","locations":[{"start":{"line":20,"column":2},"end":{"line":20,"column":2}},{"start":{"line":20,"column":2},"end":{"line":20,"column":2}}]},"5":{"line":24,"type":"binary-expr","locations":[{"start":{"line":24,"column":11},"end":{"line":24,"column":39}},{"start":{"line":24,"column":43},"end":{"line":24,"column":71}}]},"6":{"line":29,"type":"switch","locations":[{"start":{"line":30,"column":4},"end":{"line":36,"column":7}},{"start":{"line":37,"column":4},"end":{"line":43,"column":7}},{"start":{"line":44,"column":4},"end":{"line":46,"column":19}}]},"7":{"line":31,"type":"if","locations":[{"start":{"line":31,"column":6},"end":{"line":31,"column":6}},{"start":{"line":31,"column":6},"end":{"line":31,"column":6}}]},"8":{"line":38,"type":"if","locations":[{"start":{"line":38,"column":6},"end":{"line":38,"column":6}},{"start":{"line":38,"column":6},"end":{"line":38,"column":6}}]},"9":{"line":38,"type":"binary-expr","locations":[{"start":{"line":38,"column":10},"end":{"line":38,"column":36}},{"start":{"line":38,"column":40},"end":{"line":38,"column":66}}]},"10":{"line":55,"type":"cond-expr","locations":[{"start":{"line":55,"column":69},"end":{"line":55,"column":81}},{"start":{"line":55,"column":84},"end":{"line":55,"column":86}}]},"11":{"line":55,"type":"binary-expr","locations":[{"start":{"line":55,"column":16},"end":{"line":55,"column":36}},{"start":{"line":55,"column":40},"end":{"line":55,"column":66}}]},"12":{"line":58,"type":"if","locations":[{"start":{"line":58,"column":4},"end":{"line":58,"column":4}},{"start":{"line":58,"column":4},"end":{"line":58,"column":4}}]},"13":{"line":58,"type":"binary-expr","locations":[{"start":{"line":58,"column":8},"end":{"line":58,"column":46}},{"start":{"line":58,"column":50},"end":{"line":58,"column":92}}]},"14":{"line":62,"type":"if","locations":[{"start":{"line":62,"column":4},"end":{"line":62,"column":4}},{"start":{"line":62,"column":4},"end":{"line":62,"column":4}}]},"15":{"line":63,"type":"if","locations":[{"start":{"line":63,"column":6},"end":{"line":63,"column":6}},{"start":{"line":63,"column":6},"end":{"line":63,"column":6}}]},"16":{"line":69,"type":"if","locations":[{"start":{"line":69,"column":4},"end":{"line":69,"column":4}},{"start":{"line":69,"column":4},"end":{"line":69,"column":4}}]},"17":{"line":71,"type":"if","locations":[{"start":{"line":71,"column":8},"end":{"line":71,"column":8}},{"start":{"line":71,"column":8},"end":{"line":71,"column":8}}]}}};
 }
+__cov_ywtvwR4khfKLIHaTt1f6Ew = __cov_ywtvwR4khfKLIHaTt1f6Ew['/Users/ZPU/code/express-auth-middle/lib/index.js'];
+__cov_ywtvwR4khfKLIHaTt1f6Ew.s['1']++;var return401=function return401(res,options){__cov_ywtvwR4khfKLIHaTt1f6Ew.f['1']++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['2']++;console.error('authorisationMiddleware 401');__cov_ywtvwR4khfKLIHaTt1f6Ew.s['3']++;if(options.challenge){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['1'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['4']++;res.set('WWW-Authenticate','Basic realm="'+options.challenge+'"');}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['1'][1]++;}__cov_ywtvwR4khfKLIHaTt1f6Ew.s['5']++;return res.status(401).send();};__cov_ywtvwR4khfKLIHaTt1f6Ew.s['6']++;var xAuthCheck=function xAuthCheck(req,xAuthorisationKey){__cov_ywtvwR4khfKLIHaTt1f6Ew.f['2']++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['7']++;if(req.headers['x-authorization']){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['2'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['8']++;if(req.headers['x-authorization']==='TOKEN '+xAuthorisationKey){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['3'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['9']++;return true;}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['3'][1]++;}}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['2'][1]++;}__cov_ywtvwR4khfKLIHaTt1f6Ew.s['10']++;return false;};__cov_ywtvwR4khfKLIHaTt1f6Ew.s['11']++;var basicAuthCheck=function basicAuthCheck(req,basicAuthUname,basicAuthPword){__cov_ywtvwR4khfKLIHaTt1f6Ew.f['3']++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['12']++;var user=basicAuth(req);__cov_ywtvwR4khfKLIHaTt1f6Ew.s['13']++;if(!user){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['4'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['14']++;console.error('Basic authentication failed');__cov_ywtvwR4khfKLIHaTt1f6Ew.s['15']++;return false;}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['4'][1]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['16']++;return(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['5'][0]++, basicAuthUname===user.name)&&(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['5'][1]++, basicAuthPword===user.pass);}};__cov_ywtvwR4khfKLIHaTt1f6Ew.s['17']++;var validateSwitch=function validateSwitch(type,req,credentials){__cov_ywtvwR4khfKLIHaTt1f6Ew.f['4']++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['18']++;switch(type){case'x-auth':__cov_ywtvwR4khfKLIHaTt1f6Ew.b['6'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['19']++;if(credentials.xAuthorisationKey){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['7'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['20']++;return xAuthCheck(req,credentials.xAuthorisationKey);}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['7'][1]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['21']++;console.error('auth middleware use attempt with no xAuthorisationKey passed in the options! Returning false but this does not mean the auth check failed');__cov_ywtvwR4khfKLIHaTt1f6Ew.s['22']++;return false;}case'basic-auth':__cov_ywtvwR4khfKLIHaTt1f6Ew.b['6'][1]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['23']++;if((__cov_ywtvwR4khfKLIHaTt1f6Ew.b['9'][0]++, credentials.basicAuthUname)&&(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['9'][1]++, credentials.basicAuthPword)){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['8'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['24']++;return basicAuthCheck(req,credentials.basicAuthUname,credentials.basicAuthPword);}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['8'][1]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['25']++;console.error('auth middleware use attempt with no basicAuthUname OR basicAuthPword passed in the options! Returning false but this does not mean the auth check failed');__cov_ywtvwR4khfKLIHaTt1f6Ew.s['26']++;return false;}default:__cov_ywtvwR4khfKLIHaTt1f6Ew.b['6'][2]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['27']++;console.error('Invalid auth type passed, return false');__cov_ywtvwR4khfKLIHaTt1f6Ew.s['28']++;return false;}};var index = function(){__cov_ywtvwR4khfKLIHaTt1f6Ew.f['5']++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['29']++;var options=(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['11'][0]++, arguments.length>0)&&(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['11'][1]++, arguments[0]!==undefined)?(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['10'][0]++, arguments[0]):(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['10'][1]++, {});__cov_ywtvwR4khfKLIHaTt1f6Ew.s['30']++;return function(req,res,next){__cov_ywtvwR4khfKLIHaTt1f6Ew.f['6']++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['31']++;if((__cov_ywtvwR4khfKLIHaTt1f6Ew.b['13'][0]++, typeof options.methods==='undefined')||(__cov_ywtvwR4khfKLIHaTt1f6Ew.b['13'][1]++, typeof options.credentials==='undefined')){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['12'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['32']++;console.error('No authentication methods defined in the provided options. Will return a default 401.');__cov_ywtvwR4khfKLIHaTt1f6Ew.s['33']++;return return401(res,options);}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['12'][1]++;}__cov_ywtvwR4khfKLIHaTt1f6Ew.s['34']++;if(typeof options.methods==='string'){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['14'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['35']++;if(validateSwitch(options.methods,req)){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['15'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['36']++;return next();}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['15'][1]++;}__cov_ywtvwR4khfKLIHaTt1f6Ew.s['37']++;return return401(res,options);}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['14'][1]++;}__cov_ywtvwR4khfKLIHaTt1f6Ew.s['38']++;if(Array.isArray(options.methods)){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['16'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['39']++;for(var i=0;i<options.methods.length;++i){__cov_ywtvwR4khfKLIHaTt1f6Ew.s['40']++;if(validateSwitch(options.methods[i],req,options.credentials)){__cov_ywtvwR4khfKLIHaTt1f6Ew.b['17'][0]++;__cov_ywtvwR4khfKLIHaTt1f6Ew.s['41']++;return next();}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['17'][1]++;}}}else{__cov_ywtvwR4khfKLIHaTt1f6Ew.b['16'][1]++;}__cov_ywtvwR4khfKLIHaTt1f6Ew.s['42']++;return return401(res,options);};};
 
-/**
- * Express middleware to validate requests for basic and/or xAuth
- * @returns {Function}
- */
-export default (options = {}) => {
-  return (req, res, next) => {
-    if (typeof options.methods === 'undefined' || typeof options.credentials === 'undefined') {
-      console.error('No authentication methods defined in the provided options. Will return a default 401.')
-      return return401(res, options)
-    }
-    if (typeof options.methods === 'string') {
-      if (validateSwitch(options.methods, req)) {
-        return next()
-      }
-      return return401(res, options)
-    }
+return index;
 
-    if (Array.isArray(options.methods)) {
-      for (let i = 0; i < options.methods.length; ++i) {
-        if (validateSwitch(options.methods[i], req, options.credentials)) {
-          return next()
-        }
-      }
-    }
-    // If we have reached this far, then 401
-    return return401(res, options)
-  }
-}
+})));
