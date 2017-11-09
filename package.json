@@ -1,0 +1,25 @@
+{
+  "name": "express-auth-middle",
+  "version": "1.0.0",
+  "description": "express-auth-middle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdcrecur/express-auth-middle.git"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "John Carmichael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdcrecur/express-auth-middle/issues"
+  },
+  "homepage": "https://github.com/jdcrecur/express-auth-middle#readme",
+  "dependencies": {
+    "basic-auth": "^2.0.0"
+  }
+}
