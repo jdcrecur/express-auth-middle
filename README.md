@@ -5,7 +5,11 @@ express-auth-middle
 An express middleware which can check for both an x-auth header or basic authentication.
 
 Why? 
--  Lock an API behind private key with the std `X-Authorization: TOKEN privatekey` 
+-  Lock an API behind private key with the std 
+    - `X-Authorization: TOKEN privatekey` or 
+    - `Authorization: TOKEN privatekey`
+    - `X-Authorization: Bearer privatekey`
+    - `Authorization: Bearer privatekey`    
 -  Lock an API or views behind HTTP basic authentication.
 
 Don't pass your key to the client but allow the user to access the API with their basic auth creds.
@@ -28,11 +32,11 @@ export default (app) => {
   app.use(authMiddleWare({
     methods: ['x-auth', 'basic-auth'], // This allows either
     credentials: {
-      xAuthorisatioKey: config.xAuthorisationKey,
+      xAuthorisationKey: config.xAuthorisationKey,
       basicAuthUname: config.basicAuthUname,
       basicAuthPword: config.basicAuthPword,
     },
-    challenge: 'Protected area'
+    challenge: 'Protected area' // Adding the challenge flag ensures the WWW-Authenticate header is returned to prompt the user for a username and password
   }))
 
   app.use('/api/some', someRoutes())
@@ -55,7 +59,7 @@ export default (app) => {
   app.use(authMiddleWare({
     methods: ['x-auth'], // This allows just x-auth
     credentials: {
-      xAuthorisatioKey: config.xAuthorisationKey,
+      xAuthorisationKey: config.xAuthorisationKey,
     },
   }))
 
@@ -82,7 +86,7 @@ export default (app) => {
       basicAuthUname: config.basicAuthUname,
       basicAuthPword: config.basicAuthPword,
     },
-    challenge: 'Protected area'
+    challenge: 'Protected area' // Adding the challenge flag ensures the WWW-Authenticate header is returned to prompt the user for a username and password
   }))
 
   app.use('/api/some', someRoutes())
