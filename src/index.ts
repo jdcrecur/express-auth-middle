@@ -1,5 +1,6 @@
 import { Options } from './interfaces/Options';
 import validateSwitch from './validateSwitch';
+import return401 from './return401';
 
 /**
  * Express middleware to validate requests for basic and/or xAuth

@@ -1,4 +1,6 @@
-const return401 = (res, options) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = (res, options) => {
     console.error('authorisationMiddleware 401');
     if (options.challenge) {
         res.set('WWW-Authenticate', 'Basic realm="' + options.challenge + '"');

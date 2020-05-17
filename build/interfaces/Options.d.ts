@@ -4,4 +4,5 @@ export interface Options {
     verbose?: boolean;
     methods: ValidateSwitchType[];
     credentials: Credentials;
+    challenge: string;
 }

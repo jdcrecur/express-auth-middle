@@ -1,6 +1,6 @@
 {
   "name": "express-auth-middle",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "express-auth-middle a basic auth middleware for expressjs written in typescript",
   "main": "./build/index.js",
   "repository": {

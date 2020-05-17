@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const validateSwitch_1 = __importDefault(require("./validateSwitch"));
+const return401_1 = __importDefault(require("./return401"));
 /**
  * Express middleware to validate requests for basic and/or xAuth
  * @returns {Function}
@@ -12,13 +13,13 @@ exports.default = (options) => {
     return (req, res, next) => {
         if (typeof options.methods === 'undefined' || typeof options.credentials === 'undefined') {
             console.error('No authentication methods defined in the provided options. Will return a default 401.');
-            return return401(res, options);
+            return return401_1.default(res, options);
         }
         if (typeof options.methods === 'string') {
             if (validateSwitch_1.default(options.methods, req, options.credentials)) {
                 return next();
             }
-            return return401(res, options);
+            return return401_1.default(res, options);
         }
         if (Array.isArray(options.methods)) {
             for (let i = 0; i < options.methods.length; ++i) {
@@ -28,7 +29,7 @@ exports.default = (options) => {
             }
         }
         // If we have reached this far, then 401
-        return return401(res, options);
+        return return401_1.default(res, options);
     };
 };
 //# sourceMappingURL=index.js.map

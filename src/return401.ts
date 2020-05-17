@@ -1,4 +1,4 @@
-const return401 = (res, options) => {
+export default (res, options) => {
   console.error('authorisationMiddleware 401');
   if (options.challenge) {
     res.set('WWW-Authenticate', 'Basic realm="' + options.challenge + '"');
