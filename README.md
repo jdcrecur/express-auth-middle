@@ -2,17 +2,11 @@
 express-auth-middle
 
 # What
-An express middleware which can check for both an x-auth header or basic authentication.
+An ExpressJS middleware that checks for both x-auth header or basic authentication written in TypeScript
 
-Why? 
--  Lock an API behind private key with the std 
-    - `X-Authorization: TOKEN privatekey` or 
-    - `Authorization: TOKEN privatekey`
-    - `X-Authorization: Bearer privatekey`
-    - `Authorization: Bearer privatekey`    
--  Lock an API or views behind HTTP basic authentication.
+Basic auth via the standard base64 encoded string.
 
-Don't pass your key to the client but allow the user to access the API with their basic auth creds.
+A-Auth type will look for a match string: src/xAuthCheck.ts
 
 # Example
 
